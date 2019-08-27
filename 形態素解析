@@ -1,0 +1,17 @@
+from googletrans import Translator
+from janome.tokenizer import Tokenizer
+a=input("形態素解析する文章を入力してください　")
+t = Tokenizer()
+for token in t.tokenize(a):
+    print(token)
+print("-----------------")
+print("動詞",[token.surface for token in t.tokenize(a)
+       if token.part_of_speech.startswith('動詞')])
+c=[token.surface for token in t.tokenize(a)
+       if token.part_of_speech.startswith('動詞')]
+d=",".join(c)
+translator = Translator()
+trans_en = translator.translate(d)
+print(trans_en.text)
+
+#https://ejje.weblio.jp/content/英単語
